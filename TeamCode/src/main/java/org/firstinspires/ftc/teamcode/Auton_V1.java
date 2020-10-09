@@ -25,10 +25,10 @@ public class Auton_V1 extends LinearOpMode{
         telemetry.addData("Status", "Intialized");
         telemetry.update();
 
-        fldrive  = hardwareMap.get(DcMotor.class, "fl_drive");
-        frdrive  = hardwareMap.get(DcMotor.class, "fr_drive");
-        brdrive = hardwareMap.get(DcMotor.class, "br_drive");
-        bldrive = hardwareMap.get(DcMotor.class, "bl_drive");
+        fldrive  = hardwareMap.get(DcMotor.class, "fldrive");
+        frdrive  = hardwareMap.get(DcMotor.class, "frdrive");
+        brdrive = hardwareMap.get(DcMotor.class, "brdrive");
+        bldrive = hardwareMap.get(DcMotor.class, "bldrive");
 
         fldrive.setDirection(DcMotor.Direction.FORWARD);
         frdrive.setDirection(DcMotor.Direction.REVERSE);
