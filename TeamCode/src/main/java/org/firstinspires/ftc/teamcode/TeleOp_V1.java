@@ -8,8 +8,11 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="DriverMovement", group="Linear Opmode")
-public class DriverMovement extends LinearOpMode
+// version 1 of taro's driver control code
+// basic drivetrain opmode
+
+@TeleOp(name="TeleOp_V1", group="Linear Opmode")
+public class TeleOp_V1 extends LinearOpMode
 {
     private ElapsedTime runtime = new ElapsedTime();
 
