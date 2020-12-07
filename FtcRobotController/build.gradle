@@ -19,6 +19,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+    buildToolsVersion '30.0.3'
+    ndkVersion '22.0.6917172 rc1'
 }
 
 repositories {
