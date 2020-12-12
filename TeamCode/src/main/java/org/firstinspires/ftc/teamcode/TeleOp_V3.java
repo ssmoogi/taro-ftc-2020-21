@@ -69,8 +69,8 @@ public class TeleOp_V3 extends LinearOpMode
             //set power and direction for shooter
             if (y)
             {
-                lshooter.setPower(Range.clip(shooter, -1.0, 0.0));
-                rshooter.setPower(Range.clip(shooter, -1.0, 0.0));
+                lshooter.setPower(Range.clip(-shooter, -1.0, 0.0));
+                rshooter.setPower(Range.clip(-shooter, -1.0, 0.0));
             }
             else
             {
