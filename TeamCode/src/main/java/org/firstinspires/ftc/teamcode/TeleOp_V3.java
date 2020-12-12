@@ -66,6 +66,7 @@ public class TeleOp_V3 extends LinearOpMode
             brdrive.setPower(Range.clip(br, -1.0, 1.0));
             bldrive.setPower(Range.clip(bl, -1.0, 1.0));
 
+            //set power and direction for shooter
             if (y)
             {
                 lshooter.setPower(Range.clip(shooter, -1.0, 0.0));
