@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -33,13 +34,13 @@ public class TeleOp_V3 extends LinearOpMode
         rshooter = hardwareMap.get(DcMotor.class, "rshooter");
 
         //set direction of motors
-        fldrive.setDirection(DcMotor.Direction.FORWARD);
-        frdrive.setDirection(DcMotor.Direction.REVERSE);
-        brdrive.setDirection(DcMotor.Direction.REVERSE);
-        bldrive.setDirection(DcMotor.Direction.FORWARD);
+        fldrive.setDirection(DcMotor.Direction.REVERSE);
+        frdrive.setDirection(DcMotor.Direction.FORWARD);
+        brdrive.setDirection(DcMotor.Direction.FORWARD);
+        bldrive.setDirection(DcMotor.Direction.REVERSE);
 
-        lshooter.setDirection(DcMotor.Direction.REVERSE);
-        rshooter.setDirection(DcMotor.Direction.FORWARD);
+        lshooter.setDirection(DcMotor.Direction.FORWARD);
+        rshooter.setDirection(DcMotor.Direction.REVERSE);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -50,8 +51,8 @@ public class TeleOp_V3 extends LinearOpMode
             double speed = gamepad1.left_stick_y;
             double turn = -gamepad1.right_stick_x;
             double strafe = -gamepad1.left_stick_x;
-            double shooter_forward = gamepad1.right_trigger;
-            double shooter_reverse = gamepad1.left_trigger;
+            double shooter = gamepad1.right_trigger;
+            boolean y = gamepad1.y;
 
             //determine power for each motor
             double fl = speed+turn+strafe;
@@ -65,10 +66,17 @@ public class TeleOp_V3 extends LinearOpMode
             brdrive.setPower(Range.clip(br, -1.0, 1.0));
             bldrive.setPower(Range.clip(bl, -1.0, 1.0));
 
-            lshooter.setPower(Range.clip(shooter_forward, 0.0, 1.0));
-            lshooter.setPower(Range.clip(shooter_reverse, 0.0, -1.0));
-            rshooter.setPower(Range.clip(shooter_forward, 0.0, 1.0));
-            rshooter.setPower(Range.clip(shooter_reverse, 0.0, -1.0));
+            if (y)
+            {
+                lshooter.setPower(Range.clip(shooter, -1.0, 0.0));
+                rshooter.setPower(Range.clip(shooter, -1.0, 0.0));
+            }
+            else
+            {
+                lshooter.setPower(Range.clip(shooter, 0.0, 1.0));
+                rshooter.setPower(Range.clip(shooter, 0.0, 1.0));
+            }
+
 
             //debug messages for each motor
             telemetry.addData("fldrive",Double.toString(fldrive.getPower()));
@@ -76,8 +84,8 @@ public class TeleOp_V3 extends LinearOpMode
             telemetry.addData("brdrive",Double.toString(brdrive.getPower()));
             telemetry.addData("bldrive",Double.toString(bldrive.getPower()));
 
-            telemetry.addData("lshooter",Double.toString(brdrive.getPower()));
-            telemetry.addData("rshooter",Double.toString(bldrive.getPower()));
+            telemetry.addData("lshooter",Double.toString(lshooter.getPower()));
+            telemetry.addData("rshooter",Double.toString(rshooter.getPower()));
 
             telemetry.update();
         }
