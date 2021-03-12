@@ -66,8 +66,8 @@ public class TeleOp_V5 extends LinearOpMode
             double armback = gamepad1.right_trigger;
 
             // shooter controls
-            double shootfor = gamepad2.right_trigger;
-            double shootback = gamepad2.left_trigger;
+            double shootfor = gamepad2.left_trigger;
+            double shootback = gamepad2.right_trigger;
 
             // intake & conveyer controls
             double takein = gamepad2.right_stick_y;
@@ -78,6 +78,9 @@ public class TeleOp_V5 extends LinearOpMode
             double fr = speed - turn - strafe;
             double br = speed - turn + strafe;
             double bl = speed + turn - strafe;
+
+            double s = shootfor - shootback;
+            double a = armfor - armback;
 
             // slow mode
             if (slowmode){
@@ -94,11 +97,8 @@ public class TeleOp_V5 extends LinearOpMode
             bldrive.setPower(Range.clip(bl, -1.0, 1.0));
 
             //set power and direction for other motors
-            shooter.setPower(Range.clip(shootfor, -1.0, 0.0));
-            shooter.setPower(Range.clip(shootback, 0.0, 1.0));
-
-            arm.setPower(Range.clip(armfor, -1.0, 0.0));
-            arm.setPower(Range.clip(armback, 0.0, 1.0));
+            shooter.setPower(Range.clip(s, -1.0, 1.0));
+            arm.setPower(Range.clip(a, -1.0, 1.0));
 
             intake.setPower(Range.clip(takein, -1.0, 1.0));
             // conveyer.setPower(Range.clip(convey, -1.0, 1.0));
