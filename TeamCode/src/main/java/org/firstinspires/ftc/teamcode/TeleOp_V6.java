@@ -8,15 +8,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 // version 5 of taro's driver control code
-// contains code to program robot from it's march version
+// contains code to program robot from it's march version + conveyor code
 
-@TeleOp(name="TeleOp_V5", group="Linear Opmode")
-public class TeleOp_V5 extends LinearOpMode
+@TeleOp(name="TeleOp_V6", group="Linear Opmode")
+public class TeleOp_V6 extends LinearOpMode
 {
     private ElapsedTime runtime = new ElapsedTime();
 
     //name motor variables
-    private DcMotor fldrive, frdrive, brdrive, bldrive, shooter, arm, intake; // conveyer;
+    private DcMotor fldrive, frdrive, brdrive, bldrive, shooter, arm, intake, conveyor;
 
     @Override
     public void runOpMode()
@@ -33,7 +33,7 @@ public class TeleOp_V5 extends LinearOpMode
         shooter = hardwareMap.get(DcMotor.class, "shooter");
         arm = hardwareMap.get(DcMotor.class, "arm");
         intake = hardwareMap.get(DcMotor.class, "intake");
-        // conveyer = hardwareMap.get(DcMotor.class, "conveyer");
+        conveyor = hardwareMap.get(DcMotor.class, "conveyor");
 
         //set direction of motors
         fldrive.setDirection(DcMotor.Direction.REVERSE);
@@ -44,7 +44,7 @@ public class TeleOp_V5 extends LinearOpMode
         shooter.setDirection(DcMotor.Direction.FORWARD);
         arm.setDirection(DcMotor.Direction.FORWARD);
         intake.setDirection(DcMotor.Direction.FORWARD);
-        // conveyer.setDirection(DcMotor.Direction.FORWARD);
+        conveyor.setDirection(DcMotor.Direction.FORWARD);
 
         // slow mode
         boolean slowmode = false;
@@ -71,7 +71,7 @@ public class TeleOp_V5 extends LinearOpMode
 
             // intake & conveyer controls
             double takein = gamepad2.right_stick_y;
-            // double convey = gamepad2.left_stick_y;
+            double convey = gamepad2.left_stick_y;
 
             //determine power for each motor
             double fl = speed + turn + strafe;
@@ -109,7 +109,7 @@ public class TeleOp_V5 extends LinearOpMode
             }
 
             intake.setPower(Range.clip(takein, -1.0, 1.0));
-            // conveyer.setPower(Range.clip(convey, -1.0, 1.0));
+            conveyor.setPower(Range.clip(convey, -1.0, 1.0));
 
             if (gamepad1.x && xControl)
             {
