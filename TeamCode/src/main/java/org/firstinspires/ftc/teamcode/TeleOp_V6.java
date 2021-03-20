@@ -108,8 +108,16 @@ public class TeleOp_V6 extends LinearOpMode
                 arm.setPower(Range.clip(a, -0.5, 0.5));
             }
 
-            intake.setPower(Range.clip(takein, -1.0, 1.0));
-            conveyor.setPower(Range.clip(convey, -1.0, 1.0));
+            if (gamepad2.b)
+            {
+                conveyor.setPower(Range.clip(convey, -0.1, 0.1));
+                intake.setPower(Range.clip(takein, -0.1, 0.1));
+            }
+            else
+            {
+                conveyor.setPower(Range.clip(convey, -1.0, 1.0));
+                intake.setPower(Range.clip(takein, -1.0, 1.0));
+            }
 
             if (gamepad1.x && xControl)
             {
